@@ -1,7 +1,10 @@
 # Teste-Tecnico-BigChatBrasil
 
+GitURL: https://github.com/Cae-Ramalho/BigChatBrasil.git
+
 BigChatBrasil – Sistema de Filas para Processamento de Mensagens
-Visão Geral
+
+# Visão Geral
 
 Este projeto é uma API backend desenvolvida em Java + Spring Boot, com foco na implementação de um sistema de filas para processamento de mensagens de chat com priorização, conforme proposto no desafio técnico Backend BCB.
 O objetivo principal é simular um sistema de envio de mensagens entre clientes e destinatários, aplicando:
