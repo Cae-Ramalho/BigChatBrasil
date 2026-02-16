@@ -14,7 +14,7 @@ Priorização de mensagens (normal / urgente)
 Organização em camadas seguindo boas práticas de arquitetura
 A aplicação está containerizada com Docker, permitindo execução simples em qualquer ambiente.
 
-Tecnologias Utilizadas
+# Tecnologias Utilizadas
 - Java 17
 - Spring Boot 3
 - Spring Data JPA
@@ -23,7 +23,7 @@ Tecnologias Utilizadas
 - Lombok
 - Hibernate ORM
 
-Arquitetura e Organização
+# Arquitetura e Organização
 - O projeto segue uma arquitetura em camadas:
 
     controller → service → domain(entity) → repository → database
@@ -80,7 +80,7 @@ Limitações Atuais
     Sem cache distribuído
     Sem testes automatizados (ponto de melhoria)
 
-Estrutura de Dados
+# Estrutura de Dados
 CLIENT =
 	ID_CLIENT BIGINT (PRIMARY KEY) --Código do Cliente
 	NAME_CLIENT VARCHAR(150) --Nome do Cliente
@@ -150,7 +150,7 @@ LOG_USER =
 	ACTION VARCHAR(255) --Ação Executada
 	DATE_ACTION TIMESTAMP --Data/hora de execução da ação
 
-Endpoints Disponíveis
+# Endpoints Disponíveis
     Clientes
         Criar cliente
         POST /clients
@@ -185,7 +185,7 @@ Endpoints Disponíveis
         Consultar status da mensagem
         GET /messages/{id}/status
 
-Executando com Docker
+# Executando com Docker
     Pré-requisitos
     - Docker Desktop
 
@@ -197,17 +197,17 @@ Executando com Docker
 
     O banco PostgreSQL será criado automaticamente via container.
 
-Banco de Dados
+# Banco de Dados
 - Banco utilizado: PostgreSQL
 - As tabelas são criadas automaticamente via JPA/Hibernate com base nas entidades do domínio.
 
-Limitações Conhecidas
+# Limitações Conhecidas
 - Worker assíncrono completo ainda não implementado
 - Falta endpoint de monitoramento da fila
 - Sem autenticação JWT (identificação via clientId)
 - Sem testes automatizados
 
-Melhorias Futuras
+# Melhorias Futuras
 - Worker assíncrono com thread dedicada
 - Endpoint /queue/status
 - Autenticação JWT para clientes
