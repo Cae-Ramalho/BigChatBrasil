@@ -82,73 +82,73 @@ Limitações Atuais
 
 # Estrutura de Dados
 CLIENT =
-	ID_CLIENT BIGINT (PRIMARY KEY) --Código do Cliente
-	NAME_CLIENT VARCHAR(150) --Nome do Cliente
-	DOCUMENT_CLIENT VARCHAR(15) --Número de CPF ou CNPJ (Único)
-	DOCUMENT_TYPE_CLIENT ENUM --Tipo de Documento ("CPF" ou "CNPJ")
-	PLAN_TYPE_CLIENT ENUM --Tipo de Plano do Cliente ("prepaid" ou "postpaid")
-	BALANCE_CLIENT NUMERIC(15,4) --Saldo para cliente PréPago
-	LIMIT_CLIENT NUMERIC(15,4) --Limite de Crédito para PósPago
-	BO_ACTIVE_CLIENT BOOLEAN --Cliente ativo (True ou False)
-	MONTHLY_USAGE NUMERIC(15,4) --Valor de uso no mês atual
-	LAST_RESET TIMESTAMP --Última Reinicialçização de crédito (PósPago)	
-	DT_CREATE TIMESTAMP --Data/hora de criação do usuário
+- ID_CLIENT BIGINT (PRIMARY KEY) --Código do Cliente
+- NAME_CLIENT VARCHAR(150) --Nome do Cliente
+- DOCUMENT_CLIENT VARCHAR(15) --Número de CPF ou CNPJ (Único)
+- DOCUMENT_TYPE_CLIENT ENUM --Tipo de Documento ("CPF" ou "CNPJ")
+- PLAN_TYPE_CLIENT ENUM --Tipo de Plano do Cliente ("prepaid" ou "postpaid")
+- BALANCE_CLIENT NUMERIC(15,4) --Saldo para cliente PréPago
+- LIMIT_CLIENT NUMERIC(15,4) --Limite de Crédito para PósPago
+- BO_ACTIVE_CLIENT BOOLEAN --Cliente ativo (True ou False)
+- MONTHLY_USAGE NUMERIC(15,4) --Valor de uso no mês atual
+- LAST_RESET TIMESTAMP --Última Reinicialçização de crédito (PósPago)	
+- DT_CREATE TIMESTAMP --Data/hora de criação do usuário
 	
 MESSAGE = 
-	ID_MESSAGE BIGINT (PRIMARY KEY) --Código da Mensagem
-	ID_CLIENT BIGINT (FOREIGN KEY) --Código do cliente
-	ID_CONVERSATION BIGINT (FOREIGN KEY) --Código da Conversa
-	ID_RECIPIENT BIGINT (FOREIGN KEY) --Telefone de Contato do Destinatário 
-	CONTENT_MESSAGE TEXT --Conteúdo da Mensagem
-	DATE_SEND_MESSAGE TIMESTAMP --Data que o Usuário requisitou o Envio da Mensagem
-	PRIORITY_MESSAGE ENUM --Prioridade da Mensagem ("normal" ou "urgent")
-	STATUS_MESSAGE ENUM --Status de processamento da mensagem ("queued", "processing", "sent", "delivered", "read", "failed")
-	COST_MESSAGE NUMERIC(15,4) --Valor de custo da Mensagem (0.25 normal, 0.50 urgente)
-	DATE_DELIVERED TIMESTAMP --Data/hora de entrega da mensagem
-	DATE_PROCESSED TIMESTAMP --Data/hora de Processamento da Mensagem
-	DATE_FAILED TIMESTAMP --Data/hora de falha (Caso houver)
+- ID_MESSAGE BIGINT (PRIMARY KEY) --Código da Mensagem
+- ID_CLIENT BIGINT (FOREIGN KEY) --Código do cliente
+- ID_CONVERSATION BIGINT (FOREIGN KEY) --Código da Conversa
+- ID_RECIPIENT BIGINT (FOREIGN KEY) --Telefone de Contato do Destinatário 
+- CONTENT_MESSAGE TEXT --Conteúdo da Mensagem
+- DATE_SEND_MESSAGE TIMESTAMP --Data que o Usuário requisitou o Envio da Mensagem
+- PRIORITY_MESSAGE ENUM --Prioridade da Mensagem ("normal" ou "urgent")
+- STATUS_MESSAGE ENUM --Status de processamento da mensagem ("queued", "processing", "sent", "delivered", "read", "failed")
+- COST_MESSAGE NUMERIC(15,4) --Valor de custo da Mensagem (0.25 normal, 0.50 urgente)
+- DATE_DELIVERED TIMESTAMP --Data/hora de entrega da mensagem
+- DATE_PROCESSED TIMESTAMP --Data/hora de Processamento da Mensagem
+- DATE_FAILED TIMESTAMP --Data/hora de falha (Caso houver)
 	
 CONVERSATION = 
-	ID_CONVERSATION	BIGINT (PRIMARY KEY) --Código da Conversa
-	ID_CLIENT BIGINT (FOREIGN KEY) --Código do Cliente
-	ID_RECIPIENT BIGINT (FOREIGN KEY) --Telefone de Contato do Destinatário
-	LAST_MESSAGE_CONTENT TEXT --Conteúdo da última mensagem
-	LAST_MESSAGE_TIME TIMESTAMP --Data da última Mensagem
-	UNREAD_COUNT BIGINT --Contador da quantidade de mensagens não lidas
-	STATUS_CONVERSATION ENUM --Status da Conversa ("open", "closed")
+- ID_CONVERSATION	BIGINT (PRIMARY KEY) --Código da Conversa
+- ID_CLIENT BIGINT (FOREIGN KEY) --Código do Cliente
+- ID_RECIPIENT BIGINT (FOREIGN KEY) --Telefone de Contato do Destinatário
+- LAST_MESSAGE_CONTENT TEXT --Conteúdo da última mensagem
+- LAST_MESSAGE_TIME TIMESTAMP --Data da última Mensagem
+- UNREAD_COUNT BIGINT --Contador da quantidade de mensagens não lidas
+- STATUS_CONVERSATION ENUM --Status da Conversa ("open", "closed")
 	
 FINANCIAL_TRANSACTION = 
-	ID_FINANCIAL_TRANSACTION BIGINT (PRIMARY KEY) --Código da Transação
-	ID_CLIENT BIGINT (FOREIGN KEY) --Código do Cliente
-	ID_MESSAGE BIGINT (FOREIGN KEY) --Código da Mensagem
-	ID_CONVERSATION BIGINT (FOREIGN KEY) --Código da Conversa
-	DATE_TRANSACTION TIMESTAMP --Data/hora da Transação
-	BALANCE_BEFORE	NUMERIC(15,4) --Valor Total de Saldo, ou Crédito, antes da mensagem
-	BALANCE_AFTER	NUMERIC(15,4) --Valor Total de Saldo, ou Crédito, depois da mensagem
+- ID_FINANCIAL_TRANSACTION BIGINT (PRIMARY KEY) --Código da Transação
+- ID_CLIENT BIGINT (FOREIGN KEY) --Código do Cliente
+- ID_MESSAGE BIGINT (FOREIGN KEY) --Código da Mensagem
+- ID_CONVERSATION BIGINT (FOREIGN KEY) --Código da Conversa
+- DATE_TRANSACTION TIMESTAMP --Data/hora da Transação
+- BALANCE_BEFORE	NUMERIC(15,4) --Valor Total de Saldo, ou Crédito, antes da mensagem
+- BALANCE_AFTER	NUMERIC(15,4) --Valor Total de Saldo, ou Crédito, depois da mensagem
 	
 RECIPIENT = 
-	ID_RECIPIENT BIGINT (PRIMARY KEY) --Código do Destinatário
-	NAME_RECIPIENT VARCHAR(150) --Nome do Destinatário
-	RECIPIENT_CONTACT_PHONE VARCHAR(20) --Telefone de Contato do Destinatário	
-	BO_ACTIVE_RECIPIENT BOOLEAN --Destinatário ativo (True ou False)
-	DATE_CREATE TIMESTAMP --Data de Criação do Destinatário
-	AVAILABLE BOOLEAN --Define se o destinatário está disponível para novas mensagens
+- ID_RECIPIENT BIGINT (PRIMARY KEY) --Código do Destinatário
+- NAME_RECIPIENT VARCHAR(150) --Nome do Destinatário
+- RECIPIENT_CONTACT_PHONE VARCHAR(20) --Telefone de Contato do Destinatário	
+- BO_ACTIVE_RECIPIENT BOOLEAN --Destinatário ativo (True ou False)
+- DATE_CREATE TIMESTAMP --Data de Criação do Destinatário
+- AVAILABLE BOOLEAN --Define se o destinatário está disponível para novas mensagens
 	
 USER =
-	ID_USER BIGINT (PRIMARY KEY) --Código do usuário
-	NAME_USER VARCHAR(150) --Nome do Usuário
-	USER_TYPE ENUM --Tipo de Usuário ("admin", "regular")
-	EMAIL_USER VARCHAR(150) --E-mail do usuário 
-	PASSWORD_HASH VARCHAR(255) --Senha do Usuário, para autenticação
-	BO_ACTIVE_USER BOOLEAN --Usuário ativo (True ou False)
-	DATE_CREATE TIMESTAMP --Data de Criação do Usuário
+- ID_USER BIGINT (PRIMARY KEY) --Código do usuário
+- NAME_USER VARCHAR(150) --Nome do Usuário
+- USER_TYPE ENUM --Tipo de Usuário ("admin", "regular")
+- EMAIL_USER VARCHAR(150) --E-mail do usuário 
+- PASSWORD_HASH VARCHAR(255) --Senha do Usuário, para autenticação
+- BO_ACTIVE_USER BOOLEAN --Usuário ativo (True ou False)
+- DATE_CREATE TIMESTAMP --Data de Criação do Usuário
 	
 LOG_USER = 
-	ID_LOG_USER BIGINT (PRIMARY KEY) --Código do Log	
-	ID_USER BIGINT (FOREIGN KEY) --Código do usuário que executou a ação
-	ACTION_TYPE ENUM --Tipo de ação executada ("insert", "edit", "exclude")
-	ACTION VARCHAR(255) --Ação Executada
-	DATE_ACTION TIMESTAMP --Data/hora de execução da ação
+- ID_LOG_USER BIGINT (PRIMARY KEY) --Código do Log	
+- ID_USER BIGINT (FOREIGN KEY) --Código do usuário que executou a ação
+- ACTION_TYPE ENUM --Tipo de ação executada ("insert", "edit", "exclude")
+- ACTION VARCHAR(255) --Ação Executada
+- DATE_ACTION TIMESTAMP --Data/hora de execução da ação
 
 # Endpoints Disponíveis
     Clientes
